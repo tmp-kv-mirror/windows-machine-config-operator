@@ -143,14 +143,6 @@
     "postUpdateOptions": [
       "gomodTidy",
       "gomodVendor"
-    ],
-    "packageRules": [
-      {
-        "matchManagers": [
-          "gomod"
-        ],
-        "enabled": false
-      }
     ]
   },
   "git-submodules": {
@@ -301,5 +293,13 @@
     "^rpm-lockfile-prototype rpms.in.yaml$"
   ],
   "dependencyDashboard": false,
-  "osvVulnerabilityAlerts": true
+  "osvVulnerabilityAlerts": true,
+  "packageRules": [
+    {
+      "matchManagers": [
+        "gomod"
+      ],
+      "enabled": false
+    }
+  ]
 }

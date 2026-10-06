@@ -2,7 +2,7 @@ module github.com/openshift/windows-machine-config-operator
 
 go 1.23.0
 
-toolchain go1.23.5
+toolchain go1.25.13
 
 replace (
 	// pin 1.23 versions

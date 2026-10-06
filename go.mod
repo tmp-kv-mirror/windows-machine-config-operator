@@ -1,8 +1,6 @@
 module github.com/openshift/windows-machine-config-operator
 
-go 1.23.0
-
-toolchain go1.23.5
+go 1.24
 
 replace (
 	// pin 1.23 versions
@@ -99,7 +97,7 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
-	github.com/klauspost/compress v1.17.11 // indirect
+	github.com/klauspost/compress v1.18.7 // indirect
 	github.com/kr/fs v0.1.0 // indirect
 	github.com/liggitt/tabwriter v0.0.0-20181228230101-89fcab3d43de // indirect
 	github.com/mailru/easyjson v0.9.2 // indirect

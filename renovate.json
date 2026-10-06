@@ -17,7 +17,7 @@
   "platformCommit": "enabled",
   "autodiscover": false,
   "vulnerabilityAlerts": {
-    "enabled": false
+    "enabled": true
   },
   "enabledManagers": [
     "gomod",
@@ -137,35 +137,19 @@
     ]
   },
   "gomod": {
-    "enabled": false,
+    "enabled": true,
     "additionalBranchPrefix": "{{baseBranch}}/",
     "branchPrefix": "konflux/mintmaker/",
+    "postUpdateOptions": [
+      "gomodTidy",
+      "gomodVendor"
+    ],
     "packageRules": [
       {
         "matchManagers": [
           "gomod"
         ],
-        "matchBaseBranches": [
-          "!master"
-        ],
         "enabled": false
-      },
-      {
-        "groupName": "Go dependencies",
-        "matchManagers": [
-          "gomod"
-        ],
-        "matchBaseBranches": [
-          "master"
-        ],
-        "matchPackageNames": [
-          "!k8s.io/kubernetes",
-          "!github.com/openshift/api",
-          "!github.com/openshift/client-go",
-          "!github.com/openshift/library-go",
-          "!github.com/golang-jwt/jwt/v4",
-          "!github.com/golang-jwt/jwt/v5"
-        ]
       }
     ]
   },
@@ -316,5 +300,6 @@
   "allowedCommands": [
     "^rpm-lockfile-prototype rpms.in.yaml$"
   ],
-  "dependencyDashboard": false
+  "dependencyDashboard": false,
+  "osvVulnerabilityAlerts": true
 }

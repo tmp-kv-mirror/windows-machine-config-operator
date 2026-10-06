@@ -14,11 +14,14 @@
   "platformCommit": "enabled",
   "autodiscover": false,
   "vulnerabilityAlerts": {
-    "enabled": false
+    "enabled": true,
+    "prConcurrentLimit": 2
   },
+  "osvVulnerabilityAlerts": true,
   "enabledManagers": [
     "tekton",
     "dockerfile",
+    "gomod",
     "rpm",
     "custom.regex",
     "argocd",
@@ -268,5 +271,28 @@
   },
   "forkProcessing": "enabled",
   "allowedPostUpgradeCommands": ["^rpm-lockfile-prototype rpms.in.yaml$"],
+  "gomod": {
+    "enabled": true,
+    "additionalBranchPrefix": "{{baseBranch}}/",
+    "branchPrefix": "konflux/mintmaker/",
+    "postUpdateOptions": [
+      "gomodTidy",
+      "gomodVendor"
+    ],
+    "semanticCommits": "disabled",
+    "commitMessagePrefix": "[deps]",
+    "draftPR": true,
+    "addLabels": [
+      "security"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchManagers": [
+        "gomod"
+      ],
+      "enabled": false
+    }
+  ],
   "dependencyDashboard": false
 }

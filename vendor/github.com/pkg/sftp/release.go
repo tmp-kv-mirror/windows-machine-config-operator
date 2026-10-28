@@ -3,4 +3,4 @@
 
 package sftp
 
-func debug(fmt string, args ...any) {}
+func debug(fmt string, args ...interface{}) {}

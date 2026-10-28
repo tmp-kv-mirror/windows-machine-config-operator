@@ -57,19 +57,14 @@ func (l *PrometheusAgent) GetStatus() monitoringv1.PrometheusStatus {
 //
 // The CRD is very similar to the `Prometheus` CRD except for features which aren't available in agent mode like rule evaluation, persistent storage and Thanos sidecar.
 type PrometheusAgent struct {
-	// TypeMeta defines the versioned schema of this representation of an object.
-	metav1.TypeMeta `json:",inline"`
-	// metadata defines ObjectMeta as the metadata that all persisted resources.
-	// +optional
+	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// spec defines the specification of the desired behavior of the Prometheus agent. More info:
+	// Specification of the desired behavior of the Prometheus agent. More info:
 	// https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
-	// +required
 	Spec PrometheusAgentSpec `json:"spec"`
-	// status defines the most recent observed status of the Prometheus cluster. Read-only.
+	// Most recent observed status of the Prometheus cluster. Read-only.
 	// More info:
 	// https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
-	// +optional
 	Status monitoringv1.PrometheusStatus `json:"status,omitempty"`
 }
 
@@ -81,9 +76,9 @@ func (l *PrometheusAgent) DeepCopyObject() runtime.Object {
 // PrometheusAgentList is a list of Prometheus agents.
 // +k8s:openapi-gen=true
 type PrometheusAgentList struct {
-	// TypeMeta defines the versioned schema of this representation of an object.
 	metav1.TypeMeta `json:",inline"`
-	// metadata defines ListMeta as metadata for collection responses.
+	// Standard list metadata
+	// More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata
 	metav1.ListMeta `json:"metadata,omitempty"`
 	// List of Prometheus agents
 	Items []PrometheusAgent `json:"items"`
@@ -104,7 +99,7 @@ func (l *PrometheusAgentList) DeepCopyObject() runtime.Object {
 // +kubebuilder:validation:XValidation:rule="!(has(self.mode) && self.mode == 'DaemonSet' && has(self.scrapeConfigSelector))",message="scrapeConfigSelector cannot be set when mode is DaemonSet"
 // +kubebuilder:validation:XValidation:rule="!(has(self.mode) && self.mode == 'DaemonSet' && has(self.probeSelector))",message="probeSelector cannot be set when mode is DaemonSet"
 type PrometheusAgentSpec struct {
-	// mode defines how the Prometheus operator deploys the PrometheusAgent pod(s).
+	// Mode defines how the Prometheus operator deploys the PrometheusAgent pod(s).
 	//
 	// (Alpha) Using this field requires the `PrometheusAgentDaemonSet` feature gate to be enabled.
 	//

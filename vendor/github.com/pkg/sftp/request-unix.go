@@ -8,11 +8,11 @@ import (
 	"syscall"
 )
 
-func fakeFileInfoSys() any {
+func fakeFileInfoSys() interface{} {
 	return &syscall.Stat_t{Uid: 65534, Gid: 65534}
 }
 
-func testOsSys(sys any) error {
+func testOsSys(sys interface{}) error {
 	fstat := sys.(*FileStat)
 	if fstat.UID != uint32(65534) {
 		return errors.New("Uid failed to match")

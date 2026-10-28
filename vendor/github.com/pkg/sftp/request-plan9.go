@@ -7,10 +7,10 @@ import (
 	"syscall"
 )
 
-func fakeFileInfoSys() any {
+func fakeFileInfoSys() interface{} {
 	return &syscall.Dir{}
 }
 
-func testOsSys(sys any) error {
+func testOsSys(sys interface{}) error {
 	return nil
 }

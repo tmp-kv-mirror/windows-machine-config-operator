@@ -3,7 +3,7 @@ module github.com/openshift/windows-machine-config-operator/ote
 go 1.25.0
 
 require (
-	github.com/onsi/ginkgo/v2 v2.25.1
+	github.com/onsi/ginkgo/v2 v2.33.1
 	github.com/onsi/gomega v1.38.2
 	github.com/openshift-eng/openshift-tests-extension v0.0.0-20260127124016-0fed2b824818
 	github.com/openshift/origin v1.5.0-alpha.3.0.20260403210430-c77ff4a065bf

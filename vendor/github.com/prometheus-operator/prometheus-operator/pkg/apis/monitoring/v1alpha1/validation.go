@@ -304,11 +304,9 @@ func (mr MonthRange) Parse() (*ParsedRange, error) {
 // ParsedRange is an integer representation of a range
 // +kubebuilder:object:generate:=false
 type ParsedRange struct {
-	// start defines the beginning of the range
-	// +optional
+	// Start is the beginning of the range
 	Start int `json:"start,omitempty"`
-	// end defines the end of the range
-	// +optional
+	// End of the range
 	End int `json:"end,omitempty"`
 }
 

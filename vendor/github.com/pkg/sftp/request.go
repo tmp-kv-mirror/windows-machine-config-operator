@@ -538,7 +538,7 @@ func filelist(h FileLister, r *Request, pkt requestPacket) responsePacket {
 			nameAttrs = append(nameAttrs, &sshFxpNameAttr{
 				Name:     fi.Name(),
 				LongName: runLs(idLookup, fi),
-				Attrs:    []any{fi},
+				Attrs:    []interface{}{fi},
 			})
 		}
 

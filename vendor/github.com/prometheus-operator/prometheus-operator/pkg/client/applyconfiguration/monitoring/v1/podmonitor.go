@@ -27,8 +27,7 @@ import (
 type PodMonitorApplyConfiguration struct {
 	metav1.TypeMetaApplyConfiguration    `json:",inline"`
 	*metav1.ObjectMetaApplyConfiguration `json:"metadata,omitempty"`
-	Spec                                 *PodMonitorSpecApplyConfiguration       `json:"spec,omitempty"`
-	Status                               *ConfigResourceStatusApplyConfiguration `json:"status,omitempty"`
+	Spec                                 *PodMonitorSpecApplyConfiguration `json:"spec,omitempty"`
 }
 
 // PodMonitor constructs a declarative configuration of the PodMonitor type for use with
@@ -41,7 +40,6 @@ func PodMonitor(name, namespace string) *PodMonitorApplyConfiguration {
 	b.WithAPIVersion("monitoring.coreos.com/v1")
 	return b
 }
-func (b PodMonitorApplyConfiguration) IsApplyConfiguration() {}
 
 // WithKind sets the Kind field in the declarative configuration to the given value
 // and returns the receiver, so that objects can be built by chaining "With" function invocations.
@@ -209,32 +207,8 @@ func (b *PodMonitorApplyConfiguration) WithSpec(value *PodMonitorSpecApplyConfig
 	return b
 }
 
-// WithStatus sets the Status field in the declarative configuration to the given value
-// and returns the receiver, so that objects can be built by chaining "With" function invocations.
-// If called multiple times, the Status field is set to the value of the last call.
-func (b *PodMonitorApplyConfiguration) WithStatus(value *ConfigResourceStatusApplyConfiguration) *PodMonitorApplyConfiguration {
-	b.Status = value
-	return b
-}
-
-// GetKind retrieves the value of the Kind field in the declarative configuration.
-func (b *PodMonitorApplyConfiguration) GetKind() *string {
-	return b.TypeMetaApplyConfiguration.Kind
-}
-
-// GetAPIVersion retrieves the value of the APIVersion field in the declarative configuration.
-func (b *PodMonitorApplyConfiguration) GetAPIVersion() *string {
-	return b.TypeMetaApplyConfiguration.APIVersion
-}
-
 // GetName retrieves the value of the Name field in the declarative configuration.
 func (b *PodMonitorApplyConfiguration) GetName() *string {
 	b.ensureObjectMetaApplyConfigurationExists()
 	return b.ObjectMetaApplyConfiguration.Name
-}
-
-// GetNamespace retrieves the value of the Namespace field in the declarative configuration.
-func (b *PodMonitorApplyConfiguration) GetNamespace() *string {
-	b.ensureObjectMetaApplyConfigurationExists()
-	return b.ObjectMetaApplyConfiguration.Namespace
 }

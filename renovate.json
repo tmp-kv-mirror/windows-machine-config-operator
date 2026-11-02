@@ -17,8 +17,10 @@
   "platformCommit": "enabled",
   "autodiscover": false,
   "vulnerabilityAlerts": {
-    "enabled": false
+    "enabled": true,
+    "prConcurrentLimit": 2
   },
+  "osvVulnerabilityAlerts": true,
   "enabledManagers": [
     "gomod",
     "tekton",
@@ -137,8 +139,8 @@
     ]
   },
   "gomod": {
-    "enabled": true,
-    "baseBranchPatterns": ["master"],
+    "enabled": false,
+    "recreateWhen": "always",
     "additionalBranchPrefix": "{{baseBranch}}/",
     "branchPrefix": "konflux/mintmaker/",
     "commitMessagePrefix": "[vendor]",
@@ -175,16 +177,6 @@
           "github.com/openshift/kubernetes",
           "github.com/golang-jwt/jwt/v4",
           "github.com/golang-jwt/jwt/v5"
-        ],
-        "enabled": false
-      },
-      {
-        "description": "Disable routine indirect Go dependency updates",
-        "matchManagers": [
-          "gomod"
-        ],
-        "matchDepTypes": [
-          "indirect"
         ],
         "enabled": false
       },
@@ -371,3 +363,4 @@
   ],
   "dependencyDashboard": false
 }
+

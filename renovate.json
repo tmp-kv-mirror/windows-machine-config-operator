@@ -17,8 +17,17 @@
   "platformCommit": "enabled",
   "autodiscover": false,
   "vulnerabilityAlerts": {
-    "enabled": false
+    "enabled": true,
+    "prConcurrentLimit": 2
   },
+  "osvVulnerabilityAlerts": true,
+  "packageRules": [
+    {
+      "description": "Security-only: disable routine gomod updates; vulnerabilityAlerts overrides this for CVEs",
+      "matchManagers": ["gomod"],
+      "enabled": false
+    }
+  ],
   "enabledManagers": [
     "gomod",
     "tekton",
@@ -137,8 +146,8 @@
     ]
   },
   "gomod": {
-    "enabled": true,
-    "baseBranchPatterns": ["master"],
+    "enabled": false,
+    "recreateWhen": "always",
     "additionalBranchPrefix": "{{baseBranch}}/",
     "branchPrefix": "konflux/mintmaker/",
     "commitMessagePrefix": "[vendor]",
@@ -147,7 +156,7 @@
       {
         "description": "Keep root Go module and vendored dependencies consistent",
         "matchManagers": ["gomod"],
-        "matchFileNames": ["/^go\\.mod$/"],
+        "matchFileNames": ["/^go\\.mod$/", "/^ote\\/go\\.mod$/"],
         "postUpdateOptions": ["gomodTidy", "gomodVendor"]
       },
       {
@@ -163,7 +172,7 @@
         "enabled": false
       },
       {
-        "description": "Disable updates for OpenShift and Kubernetes core packages",
+        "description": "Go dependencies",
         "matchManagers": [
           "gomod"
         ],
@@ -176,17 +185,7 @@
           "github.com/golang-jwt/jwt/v4",
           "github.com/golang-jwt/jwt/v5"
         ],
-        "enabled": false
-      },
-      {
-        "description": "Disable routine indirect Go dependency updates",
-        "matchManagers": [
-          "gomod"
-        ],
-        "matchDepTypes": [
-          "indirect"
-        ],
-        "enabled": false
+        "enabled": true
       },
       {
         "groupName": null,

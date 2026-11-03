@@ -573,7 +573,7 @@ func (f *memFile) Mode() os.FileMode {
 }
 func (f *memFile) ModTime() time.Time { return f.modtime }
 func (f *memFile) IsDir() bool        { return f.isdir }
-func (f *memFile) Sys() any {
+func (f *memFile) Sys() interface{} {
 	return fakeFileInfoSys()
 }
 

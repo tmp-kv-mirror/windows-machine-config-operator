@@ -17,8 +17,17 @@
   "platformCommit": "enabled",
   "autodiscover": false,
   "vulnerabilityAlerts": {
-    "enabled": false
+    "enabled": true,
+    "prConcurrentLimit": 2
   },
+  "osvVulnerabilityAlerts": true,
+  "packageRules": [
+    {
+      "description": "Security-only: disable routine gomod updates; vulnerabilityAlerts overrides this for CVEs",
+      "matchManagers": ["gomod"],
+      "enabled": false
+    }
+  ],
   "enabledManagers": [
     "gomod",
     "tekton",
@@ -138,89 +147,12 @@
   },
   "gomod": {
     "enabled": true,
-    "baseBranchPatterns": ["master"],
+    "recreateWhen": "always",
     "additionalBranchPrefix": "{{baseBranch}}/",
     "branchPrefix": "konflux/mintmaker/",
     "commitMessagePrefix": "[vendor]",
     "draftPR": true,
-    "packageRules": [
-      {
-        "description": "Keep root Go module and vendored dependencies consistent",
-        "matchManagers": ["gomod"],
-        "matchFileNames": ["/^go\\.mod$/"],
-        "postUpdateOptions": ["gomodTidy", "gomodVendor"]
-      },
-      {
-        "description": "Disable digest updates (commit SHA pins)",
-        "matchManagers": [
-          "gomod"
-        ],
-        "matchUpdateTypes": [
-          "digest",
-          "pin",
-          "pinDigest"
-        ],
-        "enabled": false
-      },
-      {
-        "description": "Disable updates for OpenShift and Kubernetes core packages",
-        "matchManagers": [
-          "gomod"
-        ],
-        "matchPackageNames": [
-          "k8s.io/kubernetes",
-          "github.com/openshift/api",
-          "github.com/openshift/client-go",
-          "github.com/openshift/library-go",
-          "github.com/openshift/kubernetes",
-          "github.com/golang-jwt/jwt/v4",
-          "github.com/golang-jwt/jwt/v5"
-        ],
-        "enabled": false
-      },
-      {
-        "description": "Disable routine indirect Go dependency updates",
-        "matchManagers": [
-          "gomod"
-        ],
-        "matchDepTypes": [
-          "indirect"
-        ],
-        "enabled": false
-      },
-      {
-        "groupName": null,
-        "matchManagers": [
-          "gomod"
-        ],
-        "matchPackageNames": [
-          "!k8s.io/kubernetes",
-          "!github.com/openshift/api",
-          "!github.com/openshift/client-go",
-          "!github.com/openshift/library-go",
-          "!github.com/openshift/kubernetes",
-          "!github.com/golang-jwt/jwt/v4",
-          "!github.com/golang-jwt/jwt/v5"
-        ],
-        "matchUpdateTypes": [
-          "patch",
-          "minor"
-        ],
-        "schedule": [
-          "at any time"
-        ]
-      },
-      {
-        "description": "Disable major Go updates",
-        "matchManagers": [
-          "gomod"
-        ],
-        "matchUpdateTypes": [
-          "major"
-        ],
-        "enabled": false
-      }
-    ]
+    "postUpdateOptions": ["gomodTidy", "gomodVendor"]
   },
   "git-submodules": {
     "enabled": false,

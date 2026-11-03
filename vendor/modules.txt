@@ -298,8 +298,6 @@ github.com/monochromegane/go-gitignore
 # github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822
 ## explicit
 github.com/munnerz/goautoneg
-# github.com/onsi/ginkgo v1.16.5
-## explicit; go 1.16
 # github.com/openshift/api v0.0.0-20261017003925-24b2699a9b32
 ## explicit; go 1.26.0
 github.com/openshift/api/config/v1
@@ -372,8 +370,8 @@ github.com/operator-framework/api/pkg/operators/v1
 github.com/operator-framework/api/pkg/operators/v1alpha1
 github.com/operator-framework/api/pkg/operators/v1alpha2
 github.com/operator-framework/api/pkg/operators/v2
-# github.com/operator-framework/operator-lib v0.4.0
-## explicit; go 1.15
+# github.com/operator-framework/operator-lib v0.19.0
+## explicit; go 1.24.3
 github.com/operator-framework/operator-lib/internal/utils
 github.com/operator-framework/operator-lib/leader
 # github.com/operator-framework/operator-lifecycle-manager v0.41.0
@@ -387,21 +385,21 @@ github.com/operator-framework/operator-lifecycle-manager/pkg/api/client/clientse
 # github.com/peterbourgon/diskv v2.0.1+incompatible
 ## explicit
 github.com/peterbourgon/diskv
-# github.com/pkg/sftp v1.13.11
-## explicit; go 1.25.0
+# github.com/pkg/sftp v1.13.10
+## explicit; go 1.23.0
 github.com/pkg/sftp
 github.com/pkg/sftp/internal/encoding/ssh/filexfer
 github.com/pkg/sftp/internal/encoding/ssh/filexfer/openssh
 # github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2
 ## explicit
 github.com/pmezard/go-difflib/difflib
-# github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring v0.86.2
+# github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring v0.85.0
 ## explicit; go 1.24.0
 github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring
 github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1
 github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1alpha1
 github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1beta1
-# github.com/prometheus-operator/prometheus-operator/pkg/client v0.86.2
+# github.com/prometheus-operator/prometheus-operator/pkg/client v0.85.0
 ## explicit; go 1.24.0
 github.com/prometheus-operator/prometheus-operator/pkg/client/applyconfiguration/monitoring/v1
 github.com/prometheus-operator/prometheus-operator/pkg/client/versioned/scheme
